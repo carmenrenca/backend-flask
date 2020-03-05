@@ -3,7 +3,6 @@ from flask import Flask, jsonify, request, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
-from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
@@ -19,7 +18,6 @@ mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-CORS(app)
 
 
 @app.route('/users/register', methods=['POST'])
