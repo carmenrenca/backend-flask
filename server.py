@@ -11,7 +11,7 @@ from validate_email import validate_email
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'api_rest_blog'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/api_rest_blog'
+app.config['MONGO_URI'] = 'mongodb+srv://crendon:Nervion1**@basedatos-zew5r.mongodb.net/api_rest_blog?retryWrites=true&w=majority'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
 
@@ -145,7 +145,12 @@ def update_task(dni):
 
     return{'status':'noticia actualizada correctamente'}
 
-
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
